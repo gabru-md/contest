@@ -86,6 +86,17 @@ def get_recent_contest(CONFIG_PATH):
 	return current_contest, current_platform
 
 
+def show_all(CONFIG_PATH):
+	all_contests = []
+	with open(CONFIG_PATH, "r") as config_file:
+		data = json.load(config_file)
+		all_contests = data['contests'].keys()
+
+	for contest in all_contests:
+		debug(contest)
+
+
+
 DESCRIPTION = strf("Contest CLI for ELEMENT13")
 CREATE = strf("New Contest Name")
 NEWFILE = strf("New File Name for the Contest")
@@ -121,6 +132,7 @@ def get_args():
 	parser.add_argument('--clean', action='store_true', required=False)
 	parser.add_argument('--run', action='store_true', required=False)
 	parser.add_argument('--edit', type=str, required=False)
+	parser.add_argument('--all', action='store_true', required=False)
 
 	return parser.parse_args()
 
@@ -243,6 +255,9 @@ def main():
 
 	elif args.clean:
 		clear_config(CONFIG_PATH)
+
+	elif args.all:
+		show_all(CONFIG_PATH)
 
 	elif args.create:
 

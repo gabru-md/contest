@@ -5,6 +5,7 @@ TEMPLATE = """#include <bits/stdc++.h>
 #define pll pair<long, long>
 #define pdd pair<double, double>
 #define fastio ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0)
+#define exists(x,CT) CT.find(x)!=CT.end()
 #define mod 1000000007
 #define umap unordered_map
 #define uset unordered_set
@@ -25,12 +26,13 @@ ll modinv(ll n)
 }
 void sieve(ll n) {
 	prime.resize(n+1, true);
-	for(ll p=2;p<=n;p++) {
+	for(ll p=2;p*p<=n;p++) {
 		if(prime[p]) {
-			for(int i=p;i*i<=n;i+=p) prime[i] = false;
+			for(int i=p*p;i<=n;i+=p) prime[i] = false;
 		}
 	}
 }
+
 
 void solve() {
 	// type code here
@@ -44,4 +46,5 @@ int main(void) {
 		solve();
 	return 0;
 }
+
 """
